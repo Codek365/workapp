@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use common\models\User;
 
@@ -35,7 +36,6 @@ class SignupForm extends Model
             ['password', 'string', 'min' => 6],
         ];
     }
-
     /**
      * Signs user up.
      *

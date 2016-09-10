@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\db\Query;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -12,7 +13,6 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
 /**
  * Site controller
  */
@@ -49,6 +49,33 @@ class SiteController extends Controller
         ];
     }
 
+    public function successCallback($client)
+    {
+        $attributes = $client->getUserAttributes();
+        $find_user = (new Query())
+            ->from('user')
+            ->where(['email' => $attributes['email']])
+            ->one()
+        ;
+
+        if ($find_user['email'] == $attributes['email']) {
+            $model = new LoginForm();
+            $model->load($find_user);
+            $model['username'] =  $find_user['username'];
+            $model['password'] =  $attributes['id'];
+            $model->login();
+        } else {
+            $username = explode('@', $attributes['email']);
+            $model = new SignupForm(); 
+            $model['username'] =  $username[0];
+            $model['email'] =  $attributes['email'];
+            $model['password'] =  $attributes['id'];       
+            if ($user = $model->signup()) {
+                Yii::$app->getUser()->login($user);
+            }
+        }
+        
+    }
     /**
      * @inheritdoc
      */
@@ -61,6 +88,10 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'successCallback'],
             ],
         ];
     }

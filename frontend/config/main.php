@@ -44,6 +44,19 @@ return [
             ],
         ],
         */
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                // 'google' => [
+                //     'class' => 'yii\authclient\clients\GoogleOpenId'
+                // ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => '200910910327733',
+                    'clientSecret' => '0b733ca41d9a5aeb04b2fb5338582d9f',
+                ],
+            ],
+        ]
     ],
     'params' => $params,
 ];
