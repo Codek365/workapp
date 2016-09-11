@@ -1,9 +1,9 @@
 <?php
 namespace frontend\controllers;
-
+Use yii\authclient\clients\Google;
+use common\models\User;
 use Yii;
 use yii\base\InvalidParamException;
-use yii\db\Query;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -29,13 +29,13 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
                         'allow' => true,
+                        'actions' => ['login', 'signup'],
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -52,18 +52,10 @@ class SiteController extends Controller
     public function successCallback($client)
     {
         $attributes = $client->getUserAttributes();
-        $find_user = (new Query())
-            ->from('user')
-            ->where(['email' => $attributes['email']])
-            ->one()
-        ;
+        $identity = User::findOne(['email' => $attributes['email']]);
 
-        if ($find_user['email'] == $attributes['email']) {
-            $model = new LoginForm();
-            $model->load($find_user);
-            $model['username'] =  $find_user['username'];
-            $model['password'] =  $attributes['id'];
-            $model->login();
+        if ($identity) {
+            Yii::$app->user->login($identity);
         } else {
             $username = explode('@', $attributes['email']);
             $model = new SignupForm(); 
