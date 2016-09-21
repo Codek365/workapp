@@ -24,11 +24,22 @@ class m130524_201442_init extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
+        ], $tableOptions); 
+        $this->createTable('{{%user_profile}}', [
+            'id' => $this->primaryKey(),
+            'user_id' => $this->integer()->notNull()->unique(),
+            'name' => $this->string(50)->notNull()->unique(),
+            'birthday' => $this->date(),
+            'phone' => $this->integer(),
+            'address' => $this->string(100),
+            'career_goal' => $this->text(),
+           
         ], $tableOptions);
     }
 
     public function down()
     {
         $this->dropTable('{{%user}}');
+        $this->dropTable('{{%user_profile}}');
     }
 }
