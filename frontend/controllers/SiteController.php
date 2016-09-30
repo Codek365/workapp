@@ -52,9 +52,9 @@ class SiteController extends Controller
     public function successCallback($client)
     {
         $attributes = $client->getUserAttributes();
-        echo "<pre>";
-        print_r($attributes);
-        exit();
+        // echo "<pre>";
+        // print_r($attributes);
+        // exit();
         $identity = User::findOne(['email' => $attributes['email']]);
 
         if ($identity) {
