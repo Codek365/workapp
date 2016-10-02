@@ -30,7 +30,7 @@ class UserEducations extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['time'], 'safe'],
+            [['edu_time'], 'safe'],
             [['course'], 'string', 'max' => 50],
             [['achievements'], 'string', 'max' => 100],
         ];
@@ -44,7 +44,7 @@ class UserEducations extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'time' => Yii::t('app', 'Time'),
+            'edu_time' => Yii::t('app', 'Time'),
             'course' => Yii::t('app', 'Course'),
             'achievements' => Yii::t('app', 'Achievements'),
         ];

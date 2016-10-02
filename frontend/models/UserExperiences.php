@@ -31,7 +31,7 @@ class UserExperiences extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['time'], 'safe'],
+            [['exp_time'], 'safe'],
             [['company'], 'string', 'max' => 100],
             [['job_title'], 'string', 'max' => 50],
             [['describe'], 'string', 'max' => 500],
@@ -46,7 +46,7 @@ class UserExperiences extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'time' => Yii::t('app', 'Time'),
+            'exp_time' => Yii::t('app', 'Time'),
             'company' => Yii::t('app', 'Company'),
             'job_title' => Yii::t('app', 'Job Title'),
             'describe' => Yii::t('app', 'Describe'),

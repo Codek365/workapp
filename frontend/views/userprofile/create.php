@@ -1,21 +1,11 @@
 <?php
-
 use yii\helpers\Html;
-
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Userprofile */
-
-$this->title = Yii::t('app', 'Create Userprofile');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Userprofiles'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="userprofile-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+	<?= $this->render('_form', [
+		'model' => $model,
+		'user_exp' => $user_exp,
+		'user_edu' => $user_edu,
+		'user_skill' => $user_skill,
+	]) ?>
 </div>

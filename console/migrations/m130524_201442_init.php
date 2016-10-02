@@ -32,13 +32,14 @@ class m130524_201442_init extends Migration
             'birthday' => $this->date(),
             'phone' => $this->integer(),
             'address' => $this->string(100),
+            'email' => $this->string()->notNull()->unique(),
             'career_goal' => $this->text(),
            
         ], $tableOptions); 
         $this->createTable('{{%user_experiences}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),  
-            'time' => $this->date(),
+            'exp_time' => $this->date(),
             'company' => $this->string(100),
             'job_title' =>  $this->string(50),
             'describe' => $this->string(500),
@@ -54,7 +55,7 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%user_educations}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
-            'time' => $this->date(),
+            'edu_time' => $this->date(),
             'course' =>  $this->string(50),
             'achievements' => $this->string(100),
            

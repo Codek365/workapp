@@ -52,22 +52,29 @@ class SiteController extends Controller
     public function successCallback($client)
     {
         $attributes = $client->getUserAttributes();
-        // echo "<pre>";
-        // print_r($attributes);
-        // exit();
-        $identity = User::findOne(['email' => $attributes['email']]);
-
-        if ($identity) {
+        if (isset($attributes['email'])) {
+            $identity = User::findOne(['email' => $attributes['email']]);
+            $username = explode('@', $attributes['email']);
+            $username = $username[0];
+        } 
+        if (isset($attributes['emails'][0]['value'])) {
+            $identity = User::findOne(['email' => $attributes['emails'][0]['value']]);
+            $username = explode('@', $attributes['emails'][0]['value']);
+            $username = $username[0];
+        }
+        
+        if (isset($identity)) {
             Yii::$app->user->login($identity);
         } else {
-            $username = explode('@', $attributes['email']);
             $model = new SignupForm(); 
-            $model['username'] =  $username[0];
+            $model['username'] =  $username;
             $model['email'] =  $attributes['email'];
             $model['password'] =  $attributes['id'];       
             if ($user = $model->signup()) {
                 Yii::$app->getUser()->login($user);
+
             }
+
         }
         
     }
@@ -98,6 +105,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect(['userprofile/create']);
+        }
         return $this->render('index');
     }
 
