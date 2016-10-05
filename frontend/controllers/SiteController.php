@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
-
+Use yii\authclient\clients\Google;
+use common\models\User;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,7 +13,6 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
 /**
  * Site controller
  */
@@ -29,13 +29,13 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
                         'allow' => true,
+                        'actions' => ['login', 'signup'],
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -49,6 +49,35 @@ class SiteController extends Controller
         ];
     }
 
+    public function successCallback($client)
+    {
+        $attributes = $client->getUserAttributes();
+        if (isset($attributes['email'])) {
+            $identity = User::findOne(['email' => $attributes['email']]);
+            $username = explode('@', $attributes['email']);
+            $username = $username[0];
+        } 
+        if (isset($attributes['emails'][0]['value'])) {
+            $identity = User::findOne(['email' => $attributes['emails'][0]['value']]);
+            $username = explode('@', $attributes['emails'][0]['value']);
+            $username = $username[0];
+        }
+        
+        if (isset($identity)) {
+            Yii::$app->user->login($identity);
+        } else {
+            $model = new SignupForm(); 
+            $model['username'] =  $username;
+            $model['email'] =  $attributes['email'];
+            $model['password'] =  $attributes['id'];       
+            if ($user = $model->signup()) {
+                Yii::$app->getUser()->login($user);
+
+            }
+
+        }
+        
+    }
     /**
      * @inheritdoc
      */
@@ -62,6 +91,10 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'successCallback'],
+            ],
         ];
     }
 
@@ -72,6 +105,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect(['userprofile/create']);
+        }
         return $this->render('index');
     }
 

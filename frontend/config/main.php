@@ -12,6 +12,9 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'authManager' => [
+                'class' => 'yii\rbac\DbManager',
+            ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -36,14 +39,29 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => '519835648756-i0p08k904mnadlnpal220p1m0epg588m.apps.googleusercontent.com',
+                    'clientSecret' => 'btVgC-x9biuRD0BQLgGKmrQK',
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => '200910910327733',
+                    'clientSecret' => '0b733ca41d9a5aeb04b2fb5338582d9f',
+                ],
+            ],
+        ]
     ],
     'params' => $params,
 ];
