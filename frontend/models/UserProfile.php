@@ -32,7 +32,7 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'email'], 'required'],
+            [['user_id', 'name', 'email','phone','birthday','address','career_goal'], 'required'],
             [['user_id', 'phone'], 'integer'],
             [['birthday'], 'safe'],
             [['career_goal'], 'string'],

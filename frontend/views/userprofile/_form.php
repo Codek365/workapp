@@ -25,7 +25,7 @@ use yii\helpers\Html;
                 ->textInput(['value' => Yii::$app->user->identity->username,'maxlength' => true, 'placeholder' => $model->getAttributeLabel('name')]) ?>
                 <div class="form-group">
                     <?= DatePicker::widget([
-                    'name' => 'birthday',
+                    'name' => 'UserProfile[birthday]',
                     'class' => 'form-control',
                     'type' => DatePicker::TYPE_INPUT,
                     'options' => ['placeholder' => $model->getAttributeLabel('birthday')],
@@ -51,7 +51,7 @@ use yii\helpers\Html;
                 ?>
                 <div class="form-group">
                     <?= DatePicker::widget([
-                    'name' => 'edu_time',
+                    'name' => 'UserEducations[edu_time]',
                     'class' => 'form-control',
                     'type' => DatePicker::TYPE_INPUT,
                     'options' => ['value' => $user_edu->edu_time, 'placeholder' => $model->getAttributeLabel('edu_time')],
@@ -82,7 +82,7 @@ use yii\helpers\Html;
                 ?>
                 <div class="form-group">
                     <?= DatePicker::widget([
-                    'name' => 'exp_time',
+                    'name' => 'UserExperiences[exp_time]',
                     'class' => 'form-control',
                     'type' => DatePicker::TYPE_INPUT,
                     'options' => ['value' => $user_exp->exp_time, 'placeholder' => $model->getAttributeLabel('exp_time')],

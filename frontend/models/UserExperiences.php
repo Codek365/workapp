@@ -30,6 +30,7 @@ class UserExperiences extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['exp_time'],'required'],
             [['user_id'], 'integer'],
             [['exp_time'], 'safe'],
             [['company'], 'string', 'max' => 100],
