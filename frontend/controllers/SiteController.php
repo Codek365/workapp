@@ -52,23 +52,27 @@ class SiteController extends Controller
     public function successCallback($client)
     {
         $attributes = $client->getUserAttributes();
-        if (isset($attributes['email'])) {
-            $identity = User::findOne(['email' => $attributes['email']]);
-            $username = explode('@', $attributes['email']);
+        $authclient = Yii::$app->request->get('authclient');
+        
+        if ($authclient == 'google') {
+            $email = $attributes['emails'][0];
+            $identity = User::findOne(['email' =>  $email['value']]);
+            $username = explode('@', $email['value']);
             $username = $username[0];
         } 
-        if (isset($attributes['emails'][0]['value'])) {
-            $identity = User::findOne(['email' => $attributes['emails'][0]['value']]);
-            $username = explode('@', $attributes['emails'][0]['value']);
+        if ($authclient == 'facebook') {
+            $email = $attributes['email'];
+            $identity = User::findOne(['email' =>  $email]);
+            $username = explode('@', $email);
             $username = $username[0];
-        }
+        } 
         
         if (isset($identity)) {
             Yii::$app->user->login($identity);
         } else {
             $model = new SignupForm(); 
             $model['username'] =  $username;
-            $model['email'] =  $attributes['email'];
+            $model['email'] =  $email;
             $model['password'] =  $attributes['id'];       
             if ($user = $model->signup()) {
                 Yii::$app->getUser()->login($user);
