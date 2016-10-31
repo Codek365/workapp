@@ -97,22 +97,21 @@ class UserprofileController extends Controller
             $isValid = $user_exp->validate() &&  $isValid;
             $isValid = $user_edu->validate() &&  $isValid;
             $isValid = $user_skill->validate() &&  $isValid;
-            
             if ($isValid) {
                 $model->save();
                 $user_exp->save();
                 $user_edu->save();
                 $user_skill->save();
-                return $this->redirect(['view', 'id' => $id]);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
-        } 
-        return $this->render('create', [
-            'model' => $model,
-            'user_exp' => $user_exp,
-            'user_edu' => $user_edu,
-            'user_skill' => $user_skill,
-        ]);    
-        
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+                'user_exp' => $user_exp,
+                'user_edu' => $user_edu,
+                'user_skill' => $user_skill,
+            ]);
+        }
     }
 
     /**

@@ -29,7 +29,6 @@ class UserEducations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['edu_time','course','achievements'], 'required'],
             [['user_id'], 'integer'],
             [['edu_time'], 'safe'],
             [['course'], 'string', 'max' => 50],
