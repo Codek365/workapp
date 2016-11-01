@@ -64,7 +64,8 @@ class UserprofileController extends Controller
     public function actionView($id)
     {
         $user_exp = UserExperiences::findOne(['user_id' => Yii::$app->user->id]);
-        return $this->render('view', [
+
+        return $this->render('profile_pages/pp_01', [
             'model' => $this->findModel($id),
             'user_exp' => $user_exp,
         ]);
