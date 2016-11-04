@@ -59,9 +59,9 @@ AppAsset::register($this);
     NavBar::end();
     ?>
  -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 ">
                 <?= Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>

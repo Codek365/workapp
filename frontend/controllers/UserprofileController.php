@@ -65,7 +65,7 @@ class UserprofileController extends Controller
     {
         $user_exp = UserExperiences::findOne(['user_id' => Yii::$app->user->id]);
 
-        return $this->render('profile_pages/pp_01', [
+        return $this->render('view', [
             'model' => $this->findModel($id),
             'user_exp' => $user_exp,
         ]);
@@ -121,6 +121,34 @@ class UserprofileController extends Controller
      * @param integer $id
      * @return mixed
      */
+    public function actionEditableDemo() {
+    $model = new Demo; // your model can be loaded here
+    
+    // Check if there is an Editable ajax request
+    if (isset($_POST['hasEditable'])) {
+        // use Yii's response format to encode output as JSON
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
+        // read your posted model attributes
+        if ($model->load($_POST)) {
+            // read or convert your posted information
+            $value = $model->name;
+            
+            // return JSON encoded output in the below format
+            return ['output'=>$value, 'message'=>''];
+            
+            // alternatively you can return a validation error
+            // return ['output'=>'', 'message'=>'Validation error'];
+        }
+        // else if nothing to do always return an empty JSON encoded output
+        else {
+            return ['output'=>'', 'message'=>''];
+        }
+    }
+    
+    // Else return to rendering a normal view
+    return $this->render('view', ['model'=>$model]);
+}
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -148,7 +176,7 @@ class UserprofileController extends Controller
                 $user_exp->save();
                 $user_edu->save();
                 $user_skill->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             return $this->render('update', [

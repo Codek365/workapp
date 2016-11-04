@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 ?>
-<!-- <div class="userprofile-view">
+<div class="userprofile-view">
 
 
     <p>
@@ -25,4 +25,3 @@ use yii\widgets\DetailView;
     ]) ?>
 
 </div>
- -->
