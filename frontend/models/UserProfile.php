@@ -32,7 +32,7 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'email'], 'required'],
+            [['user_id', 'name', 'email','phone','birthday','career_goal','address'], 'required'],
             [['user_id', 'phone'], 'integer'],
             [['birthday'], 'safe'],
             [['career_goal'], 'string'],
@@ -59,15 +59,7 @@ class UserProfile extends \yii\db\ActiveRecord
             'address' => Yii::t('app', 'Address'),
             'email' => Yii::t('app', 'Email'),
             'career_goal' => Yii::t('app', 'Career Goal'),
-            'exp_time' => Yii::t('app', 'Time period'),
-            'company' => Yii::t('app', 'Company'),
-            'job_title' => Yii::t('app', 'Job Title'),
-            'describe' => Yii::t('app', 'Describe'),
-            'edu_time' => Yii::t('app', 'Time'),
-            'course' => Yii::t('app', 'Course'),
-            'achievements' => Yii::t('app', 'Achievements'),
-            'skill' => Yii::t('app', 'Skill'),
-            'level' => Yii::t('app', 'Level'),
+            
         ];
     }
 

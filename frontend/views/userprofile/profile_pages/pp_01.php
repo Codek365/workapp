@@ -1,19 +1,40 @@
+<?php 
+use yii\helpers\Url;
+use yii\helpers\HTml;
+use yii\widgets\ActiveForm;
+$form = ActiveForm::begin([
+    'id' => 'contact-form',
+    'enableAjaxValidation' => true,
+]);
+?>
+
+<link rel="stylesheet" type="text/css" href="/css/profile_pages/reset-fonts-grids.css" media="all" /> 
 <link rel="stylesheet" type="text/css" href="/css/profile_pages/pp_01.css" media="all" /> 
-<link rel="stylesheet" type="text/css" href="/css/profile_pages/resume.css" media="all" />
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<?php $form = ActiveForm::begin(); ?>
+<?= $form->field($model, 'user_id')->textInput(['type' => 'hidden'])->label(false)?>
+<?= $form->field($model, 'name')->textInput(['type' => 'hidden'])->label(false) ?>
+<?= $form->field($model, 'email')->textInput(['type' => 'hidden'])->label(false) ?>
+<?= $form->field($model, 'phone')->textInput(['type' => 'hidden'])->label(false) ?>
+<?= $form->field($model, 'birthday')->textInput(['type' => 'hidden'])->label(false) ?>
+<?= $form->field($model, 'career_goal')->textInput(['type' => 'hidden'])->label(false) ?>
+<?= $form->field($model, 'address')->textInput(['type' => 'hidden'])->label(false) ?>
+    
+        
 <div id="doc2" class="yui-t7">
 	<div id="inner">
 	
 		<div id="hd">
 			<div class="yui-gc">
 				<div class="yui-u first">
-					<h1>Jonathan Doe</h1>
+					<h1><?= $model->name?></h1>
 					<h2>Web Designer, Director</h2>
 				</div>
 
 				<div class="yui-u">
 					<div class="contact-info">
-						<h3><a href="mailto:name@yourdomain.com">name@yourdomain.com</a></h3>
-						<h3>(313) - 867-5309</h3>
+						<h3><a href="mailto:name@yourdomain.com"><?= $model->email?></a></h3>
+						<h3>(+84)<?= $model->phone?></h3>
 					</div><!--// .contact-info -->
 				</div>
 			</div><!--// .yui-gc -->
@@ -146,6 +167,16 @@
 
 
 </div><!--// doc -->
+<div class="form-group">
+            <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
+        </div>
+<?php ActiveForm::end(); ?>
+<script type="text/javascript">
+tinymce.init({
+    selector: '.yui-u ',
+    menubar: false,
 
-
-
+  inline: true,
+  toolbar: 'undo redo | styleselect  bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+});
+</script>

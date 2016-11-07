@@ -80,110 +80,52 @@ class UserprofileController extends Controller
     {
         $check_user = Userprofile::findOne(['user_id' => Yii::$app->user->id]);
         if ($check_user == true) {
-           return $this->redirect(['view', 'id' => $check_user->id]);
+           return $this->redirect(['update', 'id' => $check_user->id]);
         }
 
         $model = new Userprofile();
-        $user_exp = new UserExperiences();
-        $user_edu = new UserEducations();
-        $user_skill = new UserSkills();
+       
 
-
-        if ($model->load(Yii::$app->request->post()) && 
-            $user_exp->load(Yii::$app->request->post()) &&
-            $user_edu->load(Yii::$app->request->post()) &&
-            $user_skill->load(Yii::$app->request->post())
-            ) {
+        if ($model->load(Yii::$app->request->post())) {
             $isValid = $model->validate();
-            $isValid = $user_exp->validate() &&  $isValid;
-            $isValid = $user_edu->validate() &&  $isValid;
-            $isValid = $user_skill->validate() &&  $isValid;
+            
             if ($isValid) {
                 $model->save();
-                $user_exp->save();
-                $user_edu->save();
-                $user_skill->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             return $this->render('create', [
-                'model' => $model,
-                'user_exp' => $user_exp,
-                'user_edu' => $user_edu,
-                'user_skill' => $user_skill,
+                'model' => $model
             ]);
         }
     }
 
-    /**
-     * Updates an existing Userprofile model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionEditableDemo() {
-    $model = new Demo; // your model can be loaded here
-    
-    // Check if there is an Editable ajax request
-    if (isset($_POST['hasEditable'])) {
-        // use Yii's response format to encode output as JSON
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        
-        // read your posted model attributes
-        if ($model->load($_POST)) {
-            // read or convert your posted information
-            $value = $model->name;
-            
-            // return JSON encoded output in the below format
-            return ['output'=>$value, 'message'=>''];
-            
-            // alternatively you can return a validation error
-            // return ['output'=>'', 'message'=>'Validation error'];
-        }
-        // else if nothing to do always return an empty JSON encoded output
-        else {
-            return ['output'=>'', 'message'=>''];
-        }
-    }
-    
-    // Else return to rendering a normal view
-    return $this->render('view', ['model'=>$model]);
-}
+  
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        $user_exp = UserExperiences::findOne(['user_id' => Yii::$app->user->id]);
-        $user_edu = UserEducations::findOne(['user_id' => Yii::$app->user->id]);
-        $user_skill = UserSkills::findOne(['user_id' => Yii::$app->user->id]);
+        if (Yii::$app->request->get('template')) {
+            $template = Yii::$app->request->get('template');
+        } else {
+            $template = 'pp_01';
+        }
 
-        if ($user_exp === null || $model === null) {
+
+        if ($model === null) {
            return $this->redirect(['create']);
         }
 
 
-        if ($model->load(Yii::$app->request->post()) && 
-            $user_exp->load(Yii::$app->request->post()) &&
-            $user_edu->load(Yii::$app->request->post()) &&
-            $user_skill->load(Yii::$app->request->post())
-            ) {
+        if ($model->load(Yii::$app->request->post())) {
             $isValid = $model->validate();
-            $isValid = $user_exp->validate() &&  $isValid;
-            $isValid = $user_edu->validate() &&  $isValid;
-            $isValid = $user_skill->validate() &&  $isValid;
             if ($isValid) {
                 $model->save();
-                $user_exp->save();
-                $user_edu->save();
-                $user_skill->save();
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
-            return $this->render('update', [
-                'model' => $model,
-                'user_exp' => $user_exp,
-                'user_edu' => $user_edu,
-                'user_skill' => $user_skill,
+            return $this->render('profile_pages/'.$template, [
+                'model' => $model
             ]);
         }
     }
