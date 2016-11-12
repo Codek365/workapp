@@ -20,62 +20,54 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-   <!--  <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
- -->
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+<div id="wrapper" >  
+    <div id="sidebar-wrapper">
+        <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+        </ul>
+        <ul class="sidebar-nav" id="sidebar">
+          <li><a>Cadastro<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+           <ul class="sidebar-nav" id="sidebar">
+                <li><a>link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+           </ul>
+          <li><a>Consulta<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <li><a>Relatorio<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        </ul>
+      </div>
+    <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+            <div class="container-fluid">
+                <div class="row">
+                   
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
+                        <?= Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]) ?>
+                        <?= Alert::widget() ?>
+                        <?= $content ?>
+                    </div>
+                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<!-- <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer> -->
-
+<script type="text/javascript">
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+});
+</script>
 <?php $this->endBody() ?>
 </body>
 </html>
