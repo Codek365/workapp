@@ -159,4 +159,13 @@ class UserprofileController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    public function actionAjaxgetexp()
+    {
+        $user_exp =  UserExperiences::find()
+                                    ->where(['user_id' => Yii::$app->user->id])
+                                    ->asArray()
+                                    ->all();
+
+        return json_encode($user_exp);
+    }
 }

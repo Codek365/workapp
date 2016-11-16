@@ -12,6 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+
         'assetManager' => [
             'bundles' => [
                 // 'yii\web\JqueryAsset' => [
@@ -32,7 +33,8 @@ return [
             ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
-        ],
+            'enableCsrfValidation'=>false,
+        ],  
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
