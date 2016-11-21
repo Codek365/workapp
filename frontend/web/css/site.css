@@ -182,6 +182,8 @@ a.desc:after {
 .sidebar-nav li {
   line-height: 40px;
   text-indent: 20px;
+    line-height: 60px;
+    font-size: 18px;
 }
 
 .sidebar-nav li a {
@@ -202,7 +204,7 @@ a.desc:after {
 }
 
 .sidebar-nav > .sidebar-brand {
-  height: 65px;
+  /*height: 65px;*/
   line-height: 60px;
   font-size: 18px;
 }
@@ -216,18 +218,14 @@ a.desc:after {
   background: none;
 }
 
-#main_icon
+#main_icon,.sub_icon
+
 {
-    float:right;
-   padding-right: 30px;
-   padding-top:20px;
+  float:right;
+  padding-right: 30px;
+  padding-top:20px;
 }
-.sub_icon
-{
-    float:right;
-   padding-right: 30px;
-   padding-top:10px;
-}
+
 .content-header {
   height: 65px;
   line-height: 65px;

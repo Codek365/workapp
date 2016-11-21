@@ -20,6 +20,8 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <?= Html::csrfMetaTags() ?>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <?php $this->head() ?>
@@ -33,13 +35,9 @@ AppAsset::register($this);
            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
         </ul>
         <ul class="sidebar-nav" id="sidebar">
-          <li><a>Cadastro<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-           <ul class="sidebar-nav" id="sidebar">
-                <li><a>link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-           </ul>
-          <li><a>Consulta<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-          <li><a>Relatorio<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          
+          <li><a>&npsb;<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <li><a href="http://workapp.host/site/logout" data-method="post">Logut<span class="sub_icon glyphicon glyphicon-log-out"></span></a></li>
         </ul>
       </div>
     <div id="page-content-wrapper">

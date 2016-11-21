@@ -22,12 +22,7 @@ p {
 	color: #444;
 }
 
-#cv {
-	width: 90%;
-	max-width: 800px;
-	background: #f3f3f3;
-	margin: 30px auto;
-}
+
 
 .mainDetails {
 	padding: 25px 35px;
@@ -167,39 +162,6 @@ section:last-child {
 	}
 }
 
-@media all and (max-width: 601px) {
-	#cv {
-		width: 95%;
-		margin: 10px auto;
-		min-width: 280px;
-	}
-	
-	#headshot {
-		display: none;
-	}
-	
-	#name, #contactDetails {
-		float: none;
-		width: 100%;
-		text-align: center;
-	}
-	
-	.sectionTitle, .sectionContent {
-		float: none;
-		width: 100%;
-	}
-	
-	.sectionTitle {
-		margin-left: -2px;
-		font-size: 1.25em;
-	}
-	
-	.keySkills {
-		-moz-column-count:2;
-		-webkit-column-count:2;
-		column-count:2;
-	}
-}
 
 @media all and (max-width: 480px) {
 	.mainDetails {

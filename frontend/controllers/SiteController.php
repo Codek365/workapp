@@ -56,8 +56,9 @@ class SiteController extends Controller
         $email = '';
         if ($authclient == 'google') {
             $email = $attributes['emails'][0];
-            $identity = User::findOne(['email' =>  $email['value']]);
-            $username = explode('@', $email['value']);
+            $email = $email['value'];
+            $identity = User::findOne(['email' =>  $email]);
+            $username = explode('@', $email);
             $username = $username[0];
         } 
         if ($authclient == 'facebook') {

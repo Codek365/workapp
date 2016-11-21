@@ -14,15 +14,15 @@
 		</div>
 		
 		<div id="name">
-			<h1 class="quickFade delayTwo">Joe Bloggs</h1>
+			<h1 class="quickFade delayTwo" ><?= $model->name?></h1>
 			<h2 class="quickFade delayThree">Job Title</h2>
 		</div>
 		
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
-				<li>e: <a href="mailto:joe@bloggs.com" target="_blank">joe@bloggs.com</a></li>
-				<li>w: <a href="http://www.bloggs.com">www.bloggs.com</a></li>
-				<li>m: 01234567890</li>
+				<li><?= yii\jui\DatePicker::widget(['id' => 'birthday','name' => 'UserProfile[birthday]','value' => $model->birthday,'dateFormat' => 'yyyy-MM-dd']) ?></li>
+				<li><span id="email">www.bloggs.com</span></li>
+				<li><span id="phone">01234567890</span></li>
 			</ul>
 		</div>
 		<div class="clear"></div>

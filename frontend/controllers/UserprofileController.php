@@ -124,7 +124,7 @@ class UserprofileController extends Controller
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
-            return $this->render('profile_pages/'.$template, [
+            return $this->render('update', [
                 'model' => $model
             ]);
         }
