@@ -183,13 +183,15 @@ a.desc:after {
   line-height: 40px;
   text-indent: 20px;
     line-height: 60px;
-    font-size: 18px;
+    /*font-size: 18px;*/
 }
-
+.sidebar-nav li span {font-size: 18px}
 .sidebar-nav li a {
   color: #999999;
   display: block;
   text-decoration: none;
+  font-size: 14px;
+  text-align: left;
 }
 
 .sidebar-nav li a:hover {
@@ -225,7 +227,10 @@ a.desc:after {
   padding-right: 30px;
   padding-top:20px;
 }
-
+._last a{
+  position: absolute;
+  bottom: 0;
+}
 .content-header {
   height: 65px;
   line-height: 65px;

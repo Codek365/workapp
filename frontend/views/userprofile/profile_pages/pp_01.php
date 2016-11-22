@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" type="text/css" href="/css/profile_pages/reset-fonts-grids.css" media="all" /> 
 <link rel="stylesheet" type="text/css" href="/css/profile_pages/pp_01.css" media="all" /> 
 <div  class="yui-t7">

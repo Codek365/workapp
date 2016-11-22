@@ -21,23 +21,21 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?= Html::csrfMetaTags() ?>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
-<div id="wrapper" >  
+<div id="wrapper" class="active" >  
     <div id="sidebar-wrapper">
-        <ul id="sidebar_menu" class="sidebar-nav">
+        <ul id="sidebar_menu " class="sidebar-nav">
            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
         </ul>
-        <ul class="sidebar-nav" id="sidebar">
+        <ul class="sidebar-nav " id="sidebar">
           
-          <li><a>&npsb;<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-          <li><a href="http://workapp.host/site/logout" data-method="post">Logut<span class="sub_icon glyphicon glyphicon-log-out"></span></a></li>
+          <li><a data-toggle="modal" data-target=".bs-example-modal-lg">Template<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <li class="_last"><a href="http://workapp.host/site/logout" data-method="post">Log Out<span class="sub_icon glyphicon glyphicon-log-out"></span></a></li>
         </ul>
       </div>
     <div id="page-content-wrapper">
