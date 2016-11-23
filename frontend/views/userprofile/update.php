@@ -81,25 +81,27 @@ margin-top:  10px;
 </div>
 
 <script type="text/javascript">
-var validator = ['name','email','phone','career_goal','address']
-var new_validator = [];
-$.each(validator, function(index, val) {
-$("#userprofile-"+val).attr('value', $("#"+val).text());
-new_validator.push("#"+val)
-});
-$("#btnsubmit").on('click', function() {
+    var validator = ['name','email','phone','career_goal','address']
+    var new_validator = [];
+    $.each(validator, function(index, val) {
+        $("#userprofile-"+val).attr('value', $("#"+val).text());
+        new_validator.push("#"+val)
+    });
+    $("#btnsubmit").on('click', function() {
 
 
-$.each(validator, function(index, val) {
-$("#userprofile-"+val).attr('value', $("#"+val).text());
-new_validator.push("#"+val)
-});
-$("#userprofile-birthday").attr('value', $("#birthday").val());
-});
+    $.each(validator, function(index, val) {
+        $("#userprofile-"+val).attr('value', $("#"+val).text());
+        new_validator.push("#"+val)
+    });
+    $("#userprofile-birthday").attr('value', $("#birthday").val());
+    });
+
+
 tinymce.init({
-selector: '.edit,.yui-u,'+new_validator,
+selector: '.edit,'+new_validator,
 menubar: false,
 inline: true,
-toolbar: 'undo redo  bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image'
+toolbar: 'undo redo  bold italic | alignleft aligncenter alignright | link image'
 });
 </script>

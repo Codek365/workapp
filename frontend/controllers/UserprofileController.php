@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\UserEducations;
 use frontend\models\UserExperiences;
 use frontend\models\UserSkills;
+use frontend\models\CvForm;
 use Yii;
 use frontend\models\Userprofile;
 use yii\data\ActiveDataProvider;
@@ -79,7 +80,7 @@ class UserprofileController extends Controller
     public function actionCreate()
     {
         $check_user = Userprofile::findOne(['user_id' => Yii::$app->user->id]);
-        if ($check_user == true) {
+        if ($check_user) {
            return $this->redirect(['update', 'id' => $check_user->id]);
         }
 
@@ -105,6 +106,9 @@ class UserprofileController extends Controller
     {
         $model = $this->findModel($id);
 
+        $cvforms = CvForm::find()
+                        ->asArray()
+                        ->all();
         if (Yii::$app->request->get('template')) {
             $template = Yii::$app->request->get('template');
         } else {
@@ -125,7 +129,8 @@ class UserprofileController extends Controller
             }
         } else {
             return $this->render('update', [
-                'model' => $model
+                'model' => $model,
+                'cvforms' => $cvforms
             ]);
         }
     }

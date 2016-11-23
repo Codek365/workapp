@@ -39,25 +39,24 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%user_experiences}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),  
-            'exp_time' => $this->date(),
-            'company' => $this->string(100),
-            'job_title' =>  $this->string(50),
-            'describe' => $this->string(500),
+            'experiences' => $this->text(),
            
         ], $tableOptions); 
         $this->createTable('{{%user_skills}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
-            'skill' => $this->string(50),
-            'level' => $this->integer(1),
+            'skills' => $this->text(),
            
         ], $tableOptions); 
         $this->createTable('{{%user_educations}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
-            'edu_time' => $this->date(),
-            'course' =>  $this->string(50),
-            'achievements' => $this->string(100),
+            'educations' => 'text',
+           
+        ], $tableOptions);
+        $this->createTable('{{%cv_form}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->text(),
            
         ], $tableOptions);
     }
@@ -69,5 +68,6 @@ class m130524_201442_init extends Migration
         $this->dropTable('{{%user_experiences}}');
         $this->dropTable('{{%user_skills}}');
         $this->dropTable('{{%user_educations}}');
+        $this->dropTable('{{%cv_form}}');
     }
 }

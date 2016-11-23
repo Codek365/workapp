@@ -28,7 +28,7 @@
 						<div class="yui-u first">
 							<h2>Profile</h2>
 						</div>
-						<div class="yui-u">
+						<div class="yui-u edit">
 							<p class="enlarge">
 								Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. 
 							</p>
@@ -39,7 +39,7 @@
 						<div class="yui-u first">
 							<h2>Skills</h2>
 						</div>
-						<div class="yui-u">
+						<div class="yui-u edit">
 
 								<div class="talent">
 									<h2>Web Design</h2>
@@ -62,7 +62,7 @@
 						<div class="yui-u first">
 							<h2>Technical</h2>
 						</div>
-						<div class="yui-u">
+						<div class="yui-u edit">
 							<ul class="talent">
 								<li>XHTML</li>
 								<li>CSS</li>
@@ -89,7 +89,7 @@
 							<h2>Experience</h2>
 						</div><!--// .yui-u -->
 
-						<div class="yui-u">
+						<div class="yui-u edit">
 
 							<div class="job">
 								<h2>Facebook</h2>
@@ -128,7 +128,7 @@
 						<div class="yui-u first">
 							<h2>Education</h2>
 						</div>
-						<div class="yui-u">
+						<div class="yui-u edit">
 							<h2>Indiana University - Bloomington, Indiana</h2>
 							<h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
 						</div>
@@ -140,7 +140,6 @@
 		</div><!--// bd -->
 
 		<div id="ft">
-			<p>Jonathan Doe &mdash; <a href="mailto:name@yourdomain.com">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>
 		</div><!--// footer -->
 
 	</div><!-- // inner -->
