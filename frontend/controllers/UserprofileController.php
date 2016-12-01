@@ -122,6 +122,8 @@ class UserprofileController extends Controller
 
 
         if ($model->load(Yii::$app->request->post())) {
+            // print_r(Yii::$app->request->post());
+            // exit();
             $isValid = $model->validate();
             if ($isValid) {
                 $model->save();

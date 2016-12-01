@@ -26,7 +26,7 @@ use kartik\editable\Editable;
         </div>
 <?php ActiveForm::end(); ?>
 <script type="text/javascript">
-var validator = ['name','email','phone','career_goal','address']
+var validator = ['email','phone','career_goal','address']
 var new_validator = [];
 $.each(validator, function(index, val) {
          $("#userprofile-"+val).attr('value', $("#"+val).text());

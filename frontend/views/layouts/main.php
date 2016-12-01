@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+$this->registerJsFile('/js/bootstrap.min.js');
 
 AppAsset::register($this);
 ?>
@@ -27,15 +28,20 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div id="wrapper" class="active" >  
+<div id="wrapper" <?= !Yii::$app->user->isGuest ? 'class="active"' : ''?> >  
     <div id="sidebar-wrapper">
         <ul id="sidebar_menu " class="sidebar-nav">
            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
         </ul>
         <ul class="sidebar-nav " id="sidebar">
           
-          <li><a data-toggle="modal" data-target=".bs-example-modal-lg">Template<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-          <li class="_last"><a href="http://workapp.host/site/logout" data-method="post">Log Out<span class="sub_icon glyphicon glyphicon-log-out"></span></a></li>
+          <li><a data-toggle="modal" data-target="#cv_template">Template<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <?php if (Yii::$app->user->isGuest): ?>
+              <li class="_last"><a href="http://workapp.host/site/logout" data-method="post">Log In<span class="sub_icon glyphicon glyphicon-log-in"></span></a></li>
+          <?php else: ?>
+              <li class="_last"><a href="http://workapp.host/site/logout" data-method="post">Log Out<span class="sub_icon glyphicon glyphicon-log-out"></span></a></li>
+          <?php endif ?>
+          
         </ul>
       </div>
     <div id="page-content-wrapper">

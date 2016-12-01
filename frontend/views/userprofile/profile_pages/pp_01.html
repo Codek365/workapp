@@ -5,16 +5,16 @@
 	
 		<div id="hd">
 			<div class="yui-gc">
-				<div class=" first">
-					<h1 id="name"><?= $model->name?></h1>
+				<div class=" first edit">
+					<h1 id="name"></h1>
 					<h2>Web Designer, Director</h2>
 				</div>
 
 				<div >
 					<div class="contact-info">
-						<h3 >Birthday: <span ><?= yii\jui\DatePicker::widget(['id' => 'birthday','name' => 'UserProfile[birthday]','value' => $model->birthday,'dateFormat' => 'yyyy-MM-dd']) ?></span></h3>
-						<h3>Email: <span id="email"><?= $model->email?></span></h3>
-						<h3>Phone: <span id="phone">084<?= $model->phone?></span></h3>
+						<h3 >Birthday: <span id="birthday"></span></h3>
+						<h3>Email: <span id="email"></span></h3>
+						<h3>Phone: <span id="phone"></span></h3>
 					</div><!--// .contact-info -->
 				</div>
 			</div><!--// .yui-gc -->
@@ -29,7 +29,7 @@
 							<h2>Profile</h2>
 						</div>
 						<div class="yui-u edit">
-							<p class="enlarge">
+							<p class="enlarge" id='career_goal'>
 								Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. 
 							</p>
 						</div>
