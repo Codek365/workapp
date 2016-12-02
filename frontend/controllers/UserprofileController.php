@@ -109,21 +109,16 @@ class UserprofileController extends Controller
         $cvforms = CvForm::find()
                         ->asArray()
                         ->all();
-        if (Yii::$app->request->get('template')) {
-            $template = Yii::$app->request->get('template');
-        } else {
-            $template = 'pp_01';
-        }
-
-
         if ($model === null) {
            return $this->redirect(['create']);
         }
-
+        if (Yii::$app->request->post()) {
+            print_r(Yii::$app->request->post());
+            exit();
+        }
 
         if ($model->load(Yii::$app->request->post())) {
-            // print_r(Yii::$app->request->post());
-            // exit();
+            
             $isValid = $model->validate();
             if ($isValid) {
                 $model->save();

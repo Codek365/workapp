@@ -72,8 +72,6 @@ margin-top:  10px;
 <script type="text/javascript">
     var form_attr = 'userprofile-';
 
-    
-
     var validator = ['name','birthday','email','phone','career_goal','address']
     var new_validator = [];
     $.each(validator, function(index, val) {
@@ -86,7 +84,7 @@ margin-top:  10px;
             $("#userprofile-"+val).attr('value', $("#"+val).text());
             new_validator.push("#"+val)
         });
-        $("#userprofile-birthday").attr('value', $("#birthday").val());
+        // $("#userprofile-birthday").attr('value', $("#birthday").val());
     });
 
 
